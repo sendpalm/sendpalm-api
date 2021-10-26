@@ -7,7 +7,7 @@ export default class Email{
     verify(address){
         const options = {
             method: 'POST',
-            url: 'https://sendpalm.com/api/check_email',
+            url: 'https://api.sendpalm.com/api/check_email',
             headers: {
                 'content-type': 'application/json',
                 'authorization': this.token
@@ -33,7 +33,7 @@ export default class Email{
     send(fromEmail, toEmail, subject, content){
         const options = {
             method: 'POST',
-            url: 'https://sendpalm.com/api/send_email',
+            url: 'https://api.sendpalm.com/api/send_email',
             headers: {
                 'content-type': 'application/json',
                 'authorization': this.token
