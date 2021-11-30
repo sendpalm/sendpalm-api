@@ -23,6 +23,10 @@
     const result = await email.send(fromEmail, toEmail, subject, content)
        console.log(result)
    }
+   async function sendCampaign() {
+       const result = await email.sendCampaign(fromEmail, toEmail, subject, campaignId)
+       console.log(result)
+   }
    ```
    
    

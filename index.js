@@ -58,7 +58,7 @@ export default class Email{
             })
         })
     }
-    sendCamPaign(fromEmail, toEmail, subject, campaignId){
+    sendCampaign(fromEmail, toEmail, subject, campaignId){
         const options = {
             method: 'POST',
             url: 'https://api.sendpalm.com/api/send_campaign',
