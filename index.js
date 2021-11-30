@@ -58,4 +58,32 @@ export default class Email{
             })
         })
     }
+    sendCamPaign(fromEmail, toEmail, subject, campaignId){
+        const options = {
+            method: 'POST',
+            url: 'https://api.sendpalm.com/api/send_campaign',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': this.token
+            },
+            body: {
+                "fromEmail":fromEmail,
+                "toEmail":toEmail,
+                "subject":subject,
+                "campaignId":campaignId
+            },
+            json: true
+        }
+        console.log("options: ",options)
+        return new Promise(function(resolve,reject){
+            request(options, (error, response, body) => {
+                // if (error) throw new Error(error)
+                // console.log(body)
+                if(error){
+                    reject(new Error(error))
+                }
+                resolve(body)
+            })
+        })
+    }
 } 
