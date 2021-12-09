@@ -20,11 +20,11 @@
        console.log(result)
    }
    async function send() {
-    const result = await email.send(fromEmail, toEmail, subject, content)
+    const result = await email.send(fromEmail, toEmail, subject, content, templateParams)
        console.log(result)
    }
    async function sendCampaign() {
-       const result = await email.sendCampaign(fromEmail, toEmail, subject, campaignId)
+       const result = await email.sendCampaign(fromEmail, toEmail, subject, campaignId, templateParams)
        console.log(result)
    }
    ```
