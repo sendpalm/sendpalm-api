@@ -1,11 +1,15 @@
 {
   "name": "sendpalm",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "SendPalm Email Api",
-  "main": "lib/index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "npx babel index.js --out-dir lib"
+    "compile": "npx babel src/index.js --out-dir lib",
+    "dev": "NODE_ENV=development webpack --config webpack.config.js --mode=development -w",
+    "build": "NODE_ENV=production webpack --config webpack.config.js --mode=production",
+    "lint": "eslint .",
+    "test": "npm run lint && nyc ava",
+    "test:watch": "ava --watch"
   },
   "repository": {
     "type": "git",
@@ -22,9 +26,37 @@
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.14.8",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/preset-env": "^7.14.8"
+    "@babel/plugin-transform-runtime": "^7.16.4",
+    "@babel/preset-env": "^7.14.8",
+    "ava": "^3.15.0",
+    "babel-loader": "^8.2.3",
+    "babel-plugin-add-module-exports": "^1.0.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "eslint": "^7.32.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^4.0.2",
+    "nyc": "^15.1.0",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "@babel/runtime": "^7.15.4",
     "request": "^2.88.2"
+  },
+  "ava": {
+    "files": [
+      "test/test.js"
+    ],
+    "verbose": true,
+    "babel": "inherit",
+    "require": [
+      "babel-core/register"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "test/*.js"
+    ]
   }
 }
