@@ -58,6 +58,29 @@ export default class Email {
       });
     });
   }
+  sendWithParams(params) {
+    const options = {
+      method: "POST",
+      url: "https://api.sendpalm.com/api/send_email",
+      headers: {
+        "content-type": "application/json",
+        authorization: this.token,
+      },
+      body: params,
+      json: true,
+    };
+    // console.log("options: ", options);
+    return new Promise(function (resolve, reject) {
+      request(options, (error, response, body) => {
+        // if (error) throw new Error(error)
+        // console.log(body)
+        if (error) {
+          reject(new Error(error));
+        }
+        resolve(body);
+      });
+    });
+  }
   sendCampaign(fromEmail, toEmail, subject, campaignId, templateParams) {
     const options = {
       method: "POST",
@@ -73,6 +96,29 @@ export default class Email {
         campaignId: campaignId,
         templateParams: templateParams,
       },
+      json: true,
+    };
+    // console.log("options: ", options);
+    return new Promise(function (resolve, reject) {
+      request(options, (error, response, body) => {
+        // if (error) throw new Error(error)
+        // console.log(body)
+        if (error) {
+          reject(new Error(error));
+        }
+        resolve(body);
+      });
+    });
+  }
+  sendCampaignWithParams(params) {
+    const options = {
+      method: "POST",
+      url: "https://api.sendpalm.com/api/send_campaign",
+      headers: {
+        "content-type": "application/json",
+        authorization: this.token,
+      },
+      body: params,
       json: true,
     };
     // console.log("options: ", options);

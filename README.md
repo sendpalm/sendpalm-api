@@ -23,12 +23,35 @@
        console.log(result)
    }
    async function send() {
-    const result = await email.send(fromEmail, toEmail, subject, content, templateParams)
+       const result = await email.send(fromEmail, toEmail, subject, content, templateParams)
        console.log(result)
    }
    async function sendCampaign() {
        const result = await email.sendCampaign(fromEmail, toEmail, subject, campaignId, templateParams)
        console.log(result)
+   }
+   async function sendWithParams() {
+    const params = {
+      fromEmail: "fromEmail",
+      toEmail: "toEmail",
+      subject: "Welcome use SendPalm Email API",
+      content: "Hi All,Welcome use SendPalm Email API",
+      delay: 20,//minutes
+    };
+    const result = await email.sendWithParams(params);
+    console.log(result);
+   }
+
+   async function sendCampaignWithParams() {
+    const params = {
+      fromEmail: "fromEmail",
+      toEmail: "toEmail",
+      subject: "Welcome use SendPalm Email API",
+      campaignId: "1234",
+      delay: 20,
+    };
+    const result = await email.sendCampaignWithParams(params);
+    console.log(result);
    }
    ```
    
