@@ -29,6 +29,29 @@ export default class Email {
       });
     });
   }
+  verifyWithParams(params) {
+    const options = {
+      method: "POST",
+      url: "https://api.sendpalm.com/api/check_email",
+      headers: {
+        "content-type": "application/json",
+        authorization: this.token,
+      },
+      body: params,
+      json: true,
+    };
+    // console.log("options: ", options);
+    return new Promise(function (resolve, reject) {
+      request(options, (error, response, body) => {
+        // if (error) throw new Error(error)
+        // console.log(body)
+        if (error) {
+          reject(new Error(error));
+        }
+        resolve(body);
+      });
+    });
+  }
   send(fromEmail, toEmail, subject, content, templateParams) {
     const options = {
       method: "POST",
