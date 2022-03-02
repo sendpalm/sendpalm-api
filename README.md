@@ -23,7 +23,6 @@
      const result = await email.verify("email address")
      console.log(result)
    }
-   
    // Send transactional emails
    async function send() {
      const result = await email.send(fromEmail, toEmail, subject, content, templateParams)
@@ -34,7 +33,7 @@
        const result = await email.sendCampaign(fromEmail, toEmail, subject, campaignId, templateParams)
        console.log(result)
    }
-   //Email verify with params
+   // Email verify with params
    async function verifyWithParams(){
      const params = {
        fromEmail: "fromEmail",
@@ -70,6 +69,17 @@
      };
      const result = await email.sendCampaignWithParams(params);
      console.log(result);
+   }
+   // New Audience with params
+   async function newAudienceWithParams() {
+     const params = {
+        email: "email",
+        fullname: "test",
+        listId: "listId",
+        phone: "1212121212"
+      }
+      const result = await email.newAudienceWithParams(params);
+      console.log(result);
    }   
    ```
 

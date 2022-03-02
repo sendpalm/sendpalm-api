@@ -156,4 +156,27 @@ export default class Email {
       });
     });
   }
+  newAudienceWithParams(params) {
+    const options = {
+      method: "POST",
+      url: "https://api.sendpalm.com/api/newAudience",
+      headers: {
+        "content-type": "application/json",
+        authorization: this.token,
+      },
+      body: params,
+      json: true,
+    };
+    // console.log("options: ", options);
+    return new Promise(function (resolve, reject) {
+      request(options, (error, response, body) => {
+        // if (error) throw new Error(error)
+        // console.log(body)
+        if (error) {
+          reject(new Error(error));
+        }
+        resolve(body);
+      });
+    });
+  }
 }
