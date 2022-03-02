@@ -1,6 +1,6 @@
-# Sendpalm
+# SendPalm Email Api
 
-## Install
+## Installation
 
 > npm install sendpalm
 
@@ -18,46 +18,64 @@
    
    const email = new Email("your token")
    
+   // Email Verify
    async function verify() {
-       const result = await email.verify("email address")
-       console.log(result)
+     const result = await email.verify("email address")
+     console.log(result)
    }
+   
+   // Send transactional emails
    async function send() {
-       const result = await email.send(fromEmail, toEmail, subject, content, templateParams)
-       console.log(result)
+     const result = await email.send(fromEmail, toEmail, subject, content, templateParams)
+     console.log(result)
    }
+   // Campaign sending
    async function sendCampaign() {
        const result = await email.sendCampaign(fromEmail, toEmail, subject, campaignId, templateParams)
        console.log(result)
    }
+   //Email verify with params
+   async function verifyWithParams(){
+     const params = {
+       fromEmail: "fromEmail",
+       listId: "listId",
+       phone: "phone",
+       toEmail: "toEmail",
+     };
+     const result = await email.verifyWithParams(params);
+     console.log(result)
+   }
+   // Send transactional emails with params
    async function sendWithParams() {
-    const params = {
-      fromEmail: "fromEmail",
-      toEmail: "toEmail",
-      subject: "Welcome use SendPalm Email API",
-      content: "Hi All,Welcome use SendPalm Email API",
-      delay: 20,//minutes
-    };
-    const result = await email.sendWithParams(params);
-    console.log(result);
+     const params = {
+       fromEmail: "fromEmail",
+       toEmail: "toEmail",
+       subject: "Welcome use SendPalm Email API",
+       content: "Hi All,Welcome use SendPalm Email API",
+       templateParams: {"campany":"SendPalm Inc."},
+       delay: 20,//minutes
+     };
+     const result = await email.sendWithParams(params);
+     console.log(result);
    }
-
+   // Campaign sending with params
    async function sendCampaignWithParams() {
-    const params = {
-      fromEmail: "fromEmail",
-      toEmail: "toEmail",
-      subject: "Welcome use SendPalm Email API",
-      campaignId: "1234",
-      delay: 20,
-    };
-    const result = await email.sendCampaignWithParams(params);
-    console.log(result);
-   }
+     const params = {
+       fromEmail: "fromEmail",
+       toEmail: "toEmail",
+       subject: "Welcome use SendPalm Email API",
+       campaignId: "1234",
+       templateParams: {"campany":"SendPalm Inc."},
+       delay: 20,
+     };
+     const result = await email.sendCampaignWithParams(params);
+     console.log(result);
+   }   
    ```
-   
-   
 
-## Verification Response
+## Verification
+
+##  Response
 
 For example, the verification email is service@sendpalm.com:
 
@@ -112,3 +130,4 @@ When you input an email address, Reacher starts analyzing the email in 4 areas.
 2. 🌐 **Domain Name Checks**: Domain checking ensures that the email address contains a valid internet domain name, and validates if the featured domain is configured to accept mail.
 3. ⚙️ **SMTP Checks**: This function checks that the address segment before the ‘@’ sign is a valid mailbox. This is the clever part, and what sets our service apart from many others.
 4. 💡 **Misc Checks**: This function checks some miscelleanous information about the email address. As of today, it only checks if the email address is disposable, but we're looking to add checks around whether the email provider is free or not, if it's an role-based email address, or if it has been compromised in data breaches.
+
