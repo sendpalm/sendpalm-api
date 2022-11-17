@@ -1,6 +1,6 @@
 {
   "name": "sendpalm",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "SendPalm Email Api",
   "main": "dist/main.js",
   "scripts": {
